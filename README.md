@@ -7,7 +7,7 @@ See the notes about running the setup script below? Do that. Then run gulp...
 In root of the project is a bash script setup.sh to execute:
 ````bash
 chmod +x setup.sh
-./setup.sh username password secret
+source setup.sh username password secret
 ````
 Where *username* and *password* are the credentials used to log into the DB and *secret* is the secret used to created the SSH keys.
 Values can be ammended later by re-running the script, or re-exporting the value. The environment variable names can be found in the script or the config.js file if you need them.
