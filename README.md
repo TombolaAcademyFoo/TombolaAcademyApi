@@ -4,19 +4,35 @@ See the notes about Deploying to Live below? Do those, but specifiy the hostname
 
 ##Deploying to Live
 ###Setting up the Environment
+Add the environment variables, firs:
+````bash
+sudo nano /etc/profile
+````
+Add the following somewhere:
+````bash
+export taApiPort=3000
+export taApiAuthExpiry=1440
+export taApiDBHost=eutaveg-01.tombola.emea
+export taApiDBName=tombola-academy
+export taApiDBUser=XXXXXXX
+export taApiDBPassword=XXXXXXXX
+export taApiTokenSecret=XXXXXXXX
+export taApiSslPassPhrase=XXXXXXXXXX
+`````
+ Where *taApiDBUser* and *taApiDBPassword* are the credentials used to log into the DB. 
+*taApiTokenSecret* is the secret used generate the user tokens
+*taApiSslPassPhrase* is the phrase used to generate the SSL certs
+Now RESTART ANY Terminals. Confirm everything is working by running export in a bash terminal - your values should appear
+
 In root of the project is a bash script setup.sh to execute:
 ````bash
 sudo mkdir /keys
 sudo chmod a+w /keys
 
-chmod +x setup.sh
-source setup.sh username password tokenSecret passPhrase [hostname]
+chmod +x setupkeys.sh
+./setup.sh [hostname]
 ````
-Where *username* and *password* are the credentials used to log into the DB. 
-*TokenSecret* is the secret used generate the user tokens
-*passPhrase* is the phrase used to generate the SSL certs
-*[hostname]* is optional - you shouldn't need to supply it on live, as it defaults to eutaveg-01.tombola.emea
-Values can be ammended later by re-running the script, or re-exporting the value. The environment variable names can be found in the script or the config.js file if you need them.
+*[hostname]* is optional - you shouldn't need to supply it on live, as it defaults to eutaveg-01.tombola.emea. Use localhost for local files.
 
 ###Setting up the app
 1. Easiest thing to do is to run gulp  and ctrl-c out when done. This creates the build directory. 
