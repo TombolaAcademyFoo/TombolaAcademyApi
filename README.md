@@ -1,15 +1,18 @@
 # TombolaAcademyApi
 ##Running locally
-See the notes about running the setup script below? Do that. Then run gulp...
+See the notes about running the setup script below? Do that, specifiy the hostname (try *localhost*). Then run gulp...
 
 ##Deploying to Live
 ###Setting up the Environment
 In root of the project is a bash script setup.sh to execute:
 ````bash
 chmod +x setup.sh
-source setup.sh username password secret
+source setup.sh username password tokenSecret passPhrase [hostname]
 ````
-Where *username* and *password* are the credentials used to log into the DB and *secret* is the secret used to created the SSH keys.
+Where *username* and *password* are the credentials used to log into the DB. 
+*TokenSecret* is the secret used generate the user tokens
+*passPhrase* is the phrase used to generate the SSL certs
+*[hostname]* is optional - you shouldn't need to supply it on live, as it defaults to eutaveg-01.tombola.emea
 Values can be ammended later by re-running the script, or re-exporting the value. The environment variable names can be found in the script or the config.js file if you need them.
 
 ###Setting up the app
