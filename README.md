@@ -4,11 +4,11 @@ See the notes about Deploying to Live below? Do those, but specifiy the hostname
 
 ##Deploying to Live
 ###Setting up the Environment
-Add the environment variables, firs:
+Add the environment variables, open the file:
 ````bash
 sudo nano /etc/profile
 ````
-Add the following somewhere:
+Add the following somewhere to the file in nano:
 ````bash
 export taApiPort=3000
 export taApiAuthExpiry=1440
@@ -22,6 +22,7 @@ export taApiSslPassPhrase=XXXXXXXXXX
  Where *taApiDBUser* and *taApiDBPassword* are the credentials used to log into the DB. 
 *taApiTokenSecret* is the secret used generate the user tokens
 *taApiSslPassPhrase* is the phrase used to generate the SSL certs
+Save when done.
 Now RESTART ANY Terminals. Confirm everything is working by running export in a bash terminal - your values should appear
 
 In root of the project is a bash script setup.sh to execute:
