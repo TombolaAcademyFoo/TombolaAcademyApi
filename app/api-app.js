@@ -1,9 +1,10 @@
 var config = require('./config'),
     express = require('express'),
-    forceSSL = require('express-force-ssl'),
-    bodyParser = require('body-parser'),
     http = require('http'),
     https = require('https'),
+    forceSSL = require('express-force-ssl'),
+    bodyParser = require('body-parser'),
+
     fs = require('fs'),
 
     allowCors = require('./core-server/security/allow-cors'),
@@ -21,12 +22,14 @@ var config = require('./config'),
 app.set('httpsPort',config.server.port);
 app.set('httpPort',config.server.port + 80);
 
-secureServer = https.createServer({
+var secureServer = https.createServer(
+    {
         key: fs.readFileSync(config.server.ssl.keyFile),
         cert: fs.readFileSync(config.server.ssl.certFile),
         passphrase: config.server.ssl.passphrase
     },
     app),
+
 insecureServer = http.createServer(app);
 
 
@@ -58,5 +61,7 @@ app.use('/api', apiRouter);
 secureServer.listen(config.server.port, function () {
     logger.info('API Listening on port ' + config.server.port);
 });
+
+//TODO work out why logging iud suddenly failing
 insecureServer.listen();
 

@@ -5,6 +5,7 @@
         server = require( 'gulp-develop-server'),
         watch = require('gulp-watch'),
         taskListing = require('gulp-task-listing'),
+        mkDirp = require('mkdirp'),
         simpleCopyRegistration = require('./.gulp/simple-copy-registration'),
         watchTasks = [],
         i;
@@ -12,6 +13,10 @@
     for(i=0; i< simpleCopyRegistration.length; i++) {
         watchTasks.push('watch:' + simpleCopyRegistration[i]);
     }
+
+    gulp.task('addLogDirectory',function(){
+       mkDirp('./.build/logs');
+    });
 
     gulp.task('help', taskListing);
 

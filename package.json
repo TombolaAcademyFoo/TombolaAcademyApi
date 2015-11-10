@@ -21,6 +21,7 @@
     "gulp-develop-server": "~0.4.3",
     "gulp-watch": "~4.2.4",
     "gulp-task-listing": "~1.0.1",
-    "express-winston": "~0.4.1"
+    "express-winston": "~0.4.1",
+    "mkdirp": "~0.5.1"
   }
 }
