@@ -1,11 +1,14 @@
 # TombolaAcademyApi
 ##Running locally
-See the notes about running the setup script below? Do that, specifiy the hostname (try *localhost*). Then run gulp...
+See the notes about Deploying to Live below? Do those, but specifiy the hostname (try *localhost*). Then run gulp, not the nohup command
 
 ##Deploying to Live
 ###Setting up the Environment
 In root of the project is a bash script setup.sh to execute:
 ````bash
+sudo mkdir /keys
+sudo chmod a+w /keys
+
 chmod +x setup.sh
 source setup.sh username password tokenSecret passPhrase [hostname]
 ````
