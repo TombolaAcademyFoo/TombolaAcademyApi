@@ -31,7 +31,7 @@ sudo mkdir /keys
 sudo chmod a+w /keys
 
 chmod +x setupkeys.sh
-./setup.sh [hostname]
+./setupkeys.sh [hostname]
 ````
 *[hostname]* is optional - you shouldn't need to supply it on live, as it defaults to eutaveg-01.tombola.emea. Use localhost for local files.
 
