@@ -3,6 +3,10 @@
 See the notes about Deploying to Live below? Do those, but specifiy the hostname (try *localhost*). Then run gulp, not the nohup command
 
 ##Deploying to Live
+###Pre-Requisites
+* Node and Npm
+* Git
+These should alread be set up on the current machine, but will need to be set up if you have a new box.
 ###Setting up the Environment
 Add the environment variables, open the file:
 ````bash
@@ -23,7 +27,7 @@ export taApiSslPassPhrase=XXXXXXXXXX
 *taApiTokenSecret* is the secret used generate the user tokens
 *taApiSslPassPhrase* is the phrase used to generate the SSL certs
 Save when done.
-Now RESTART ANY Terminals. Confirm everything is working by running export in a bash terminal - your values should appear
+*Now RESTART your terminal* , or you could source the /etc/profile file (haven't tested the latter). Confirm everything is working by running *export* in a bash terminal to display the env variables- the values should appear.
 
 In root of the project is a bash script setup.sh to execute:
 ````bash
@@ -37,9 +41,15 @@ chmod +x setupkeys.sh
 
 ###Setting up the app
 1. Easiest thing to do is to run gulp  and ctrl-c out when done. This creates the build directory. 
-2. cd into the build directory 
-3. Execute nohup node api-app.js &
-
-The log can be followed by using the tail command on the nohup.out file. This nohup file is auto-trunctated monthly, the script on the server is in /etc/cron.monthly
+2. *cd* into the *.build* directory 
+3. Execute *nohup node api-app.js &*
 
 
+
+###Logs
+There are two logs - the nohup.out log in the .
+The log can be followed by using the tail command on the nohup.out file. This nohup file is auto-trunctated monthly, the script on the server is in */etc/cron.monthly* called: *tombola-academy-api.sh*
+````bash
+truncate /home/keith.barrow/node_modules/tombola-academy-api/.build/nohup.out --size 1000000
+truncate /home/keith.barrow/node_modules/tombola-academy-api/.build/logs/all-logs.log --size 1000000
+````
