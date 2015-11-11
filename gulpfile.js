@@ -22,7 +22,7 @@
 
     gulp.task('watch', watchTasks.concat([]));
 
-    gulp.task('server:start', ['watch'], function(){
+    gulp.task('server:start', ['addLogDirectory', 'watch'], function(){
         server.listen({path:'./.build/api-app.js'});
     });
 
