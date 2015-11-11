@@ -10,7 +10,6 @@
 
 
         app.get('/', function(req,res) {
-
             res.sendFile(path.join(directory + 'index.html'));
         });
 

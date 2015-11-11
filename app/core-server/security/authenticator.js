@@ -40,9 +40,11 @@
                 connection.release();
                 return rows[0];
             };
-
+            logger.debug('Authenticating');
             connectionPool.getConnection(function (err, connection) {
+                logger.debug('Connected');
                 if (err) {
+                    logger.error('Problen Connecting');
                     sendDbConnectionError(err);
                     return;
                 }
