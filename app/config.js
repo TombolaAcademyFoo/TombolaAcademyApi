@@ -21,11 +21,6 @@
                 passphrase: process.env.taApiSslPassPhrase
             }
         },
-        //TODO: whitelist via DB?
-        api : {
-            whitelist: ['githubusers', 'githubrepositories'],
-            idRegex: /^\d*$/
-        },
 
         authentication: {
             secret: process.env.taApiTokenSecret,

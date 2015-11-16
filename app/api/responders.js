@@ -7,22 +7,33 @@
 
         respond = function(req, res, callback) {
             res.setHeader('Content-Type', 'application/json');
-            if(!sanitizer.isTableWhitelisted(req.params.tablename)){
-                senders.errorResult(res, {'tablename': req.params.tablename }, 400);
-                return;
-            }
             if(!sanitizer.isValidId(req.params.id)){
-                senders.errorResult(res, {'id': req.params.id }, 400);
+                logger.debug('id id valid');
+                senders.errorResult(res, {'id': req.params.id, message:'Invalid ID' }, 400);
                 return;
             }
-            connectionPool.getConnection(function(err, connection) {
-                if (err) {
-                    senders.errorResult(res, err.code, 503);
-                    return;
-                }
-                callback(connection);
-                connection.release();
-            });
+
+            logger.debug('Checking whitelising');
+            sanitizer.isTableWhitelisted(req.params.tablename)
+                .then(function(isWhitelisted){
+                    logger.debug('whitelising response from sql, is Whitelisted:' + isWhitelisted);
+                    if(isWhitelisted){
+                        connectionPool.getConnection(function(err, connection) {
+                            if (err) {
+                                senders.errorResult(res, err.code, 503);
+                                return;
+                            }
+                            callback(connection);
+                            connection.release();
+                        })
+                    }
+                    else{
+                        senders.errorResult(res, {'tablename': req.params.tablename, 'message':'table not allowed' }, 400);
+                    }
+
+                }, function(){
+                    senders.errorResult(res, {'tablename': req.params.tablename, 'message':'technical error' }, 400);
+                });
         },
 
         getResponder = function(connection, res, query, queryParams){
