@@ -40,7 +40,8 @@ chmod +x setupkeys.sh
 *[hostname]* is optional - you shouldn't need to supply it on live, as it defaults to eutaveg-01.tombola.emea. Use localhost for local files.
 
 ###Setting up the app
-1. Easiest thing to do is to run gulp  and ctrl-c out when done. This creates the build directory. 
+1. If the npm package is not installed run `npm install git://github.com/TombolaAcademyFoo/TombolaAcademyApi`
+2. Easiest thing to do is to run gulp  and ctrl-c out when done. This creates the build directory. 
 2. *cd* into the *.build* directory 
 3. Execute *nohup node api-app.js &*
 
