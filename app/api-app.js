@@ -1,3 +1,4 @@
+//TODO: not a module!
 var config = require('./config'),
     express = require('express'),
     http = require('http'),
@@ -19,8 +20,19 @@ var config = require('./config'),
     apiRouter = express.Router(),
     userRouter = express.Router();
 
-app.set('httpsPort',config.server.port);
-app.set('httpPort',config.server.port + 80);
+app.use(bodyParser.urlencoded({ type: 'text/html', extended: false}));
+app.use(bodyParser.json({ type: 'application/json' }));
+
+var handleErrors = function(err,req, res, next){
+    if(err.status) {
+        logger.error(err);
+        res.status(err.status)
+            .send({message: err.message, error: err});
+    }
+    else{
+        next();
+    }
+};
 
 var secureServer = https.createServer(
     {
@@ -36,19 +48,18 @@ insecureServer = http.createServer(app);
 expressWinstonLogging.add(app);
 
 app.use(bodyParser.urlencoded({extended: false}));
+
 app.use(bodyParser.json());
 
 //https://www.npmjs.com/package/express-force-ssl
 //http://heyrod.com/snippet/s/node-https-ssl.html
 app.use(forceSSL);
 
-//TODO: Put into github
 //TODO: Salty Hash of password.
 //TODO: User managememt
 //TODO: Roles and replay attack prevention?
 
 app.all('/*', allowCors);
-
 
 app.post('/authenticate', authenticator);
 
@@ -57,6 +68,8 @@ userRoutes.registerRoutes(userRouter);
 apiRouter.use(requireToken(apiTokenResponses.errorResponse, apiTokenResponses.noTokenResponse));
 app.use('/users', userRouter);
 app.use('/api', apiRouter);
+
+app.use(handleErrors);
 
 secureServer.listen(config.server.port, function () {
     logger.info('API Listening on port ' + config.server.port);
