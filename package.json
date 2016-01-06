@@ -1,6 +1,6 @@
 {
   "name": "tombola-academy-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "tombola academy api",
   "main": "app.js",
   "scripts": {
