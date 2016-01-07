@@ -1,10 +1,6 @@
 (function () {
     'use strict';
     module.exports = function(errorResponse, noTokenResponse){
-        console.log('***********');
-        console.log(errorResponse);
-        console.log(noTokenResponse);
-        console.log('***********');
       return function(req, res, next){
           var jsonwebtoken = require('jsonwebtoken'),
               config = require('../../config'),
