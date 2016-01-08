@@ -15,12 +15,12 @@
     var apiTokenResponses = require('./api/api-token-responses');
     var app = require('./api-app-factory')(express);
     var secureServer = https.createServer(
-            {
-                key: fs.readFileSync(config.server.ssl.keyFile),
-                cert: fs.readFileSync(config.server.ssl.certFile),
-                passphrase: config.server.ssl.passphrase
-            },
-            app);
+        {
+            key: fs.readFileSync(config.server.ssl.keyFile),
+            cert: fs.readFileSync(config.server.ssl.certFile),
+            passphrase: config.server.ssl.passphrase
+        },
+        app);
     var insecureServer = http.createServer(app);
     var apiRouter = express.Router();
     //var userRouter = express.Router();

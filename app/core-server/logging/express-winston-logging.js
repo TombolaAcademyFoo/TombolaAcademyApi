@@ -1,9 +1,9 @@
 (function () {
     'use strict';
-    var expressWinston = require('express-winston'),
-        logger = require('./logger');
+    var expressWinston = require('express-winston');
+    var logger = require('./logger');
 
-    module.exports.add = function(app) {
+    module.exports.add = function (app) {
         app.use(expressWinston.errorLogger({
             transports: [
                 new logger.winston.transports.Console({

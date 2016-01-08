@@ -2,14 +2,14 @@
     'use strict';
     var path = require('path');
     module.exports = {
-        database : {
-            host     : process.env.taApiDBHost,
-            database : process.env.taApiDBName,
-            user     : process.env.taApiDBUser,
-            password : process.env.taApiDBPassword
+        database: {
+            host: process.env.taApiDBHost,
+            database: process.env.taApiDBName,
+            user: process.env.taApiDBUser,
+            password: process.env.taApiDBPassword
         },
 
-        server : {
+        server: {
             port: process.env.taApiPort,
             cors: {
                 methods: 'GET,PUT,POST,DELETE,OPTIONS',
@@ -28,7 +28,7 @@
         },
 
         logging: {
-            file:{
+            file: {
                 level: 'info',
                 filename: path.join(__dirname, 'logs/all-logs.log'),
                 handleExceptions: true,
@@ -37,7 +37,7 @@
                 maxFiles: 5,
                 colorize: false
             },
-            console:{
+            console: {
                 level: 'debug',
                 handleExceptions: true,
                 json: false,

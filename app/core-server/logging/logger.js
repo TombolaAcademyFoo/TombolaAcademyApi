@@ -1,7 +1,7 @@
 (function () {
     'use strict';
-    var winston = require('winston'),
-        config = require('../../config');
+    var winston = require('winston');
+    var config = require('../../config');
     winston.emitErrs = true;
 
     var logger = new winston.Logger({
@@ -15,7 +15,7 @@
     module.exports = logger;
     module.exports.winston = winston;
     module.exports.stream = {
-        write: function(message, encoding){
+        write: function (message, encoding) {
             logger.info(message);
         }
     };
