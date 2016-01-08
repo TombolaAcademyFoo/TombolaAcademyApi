@@ -1,7 +1,6 @@
 (function () {
     'use strict';
     var gulp = require('gulp'),
-        rimraf = require('gulp-rimraf'),
         server = require( 'gulp-develop-server'),
         watch = require('gulp-watch'),
         taskListing = require('gulp-task-listing'),
