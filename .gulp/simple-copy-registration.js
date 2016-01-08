@@ -2,7 +2,8 @@
     'use strict';
 
     var gulp = require('gulp'),
-        rimraf = require('gulp-rimraf'),
+        del = require('del'),
+        vinylPaths = require('vinyl-paths'),
         server = require('gulp-develop-server'),
         watch = require('gulp-watch'),
         simpleCopyGlobs = {
@@ -34,7 +35,7 @@
 
             gulp.task(cleanTaskName, function () {
                 return gulp.src(createDestinationGlob(globPattern), {read: false})
-                    .pipe(rimraf());
+                    .pipe(vinylPaths(del));
             });
 
             gulp.task(copyTaskName, [cleanTaskName], function () {
