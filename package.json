@@ -1,6 +1,6 @@
 {
   "name": "tombola-academy-api",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "tombola academy api",
   "main": "app.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "jsonwebtoken": "~5.0.2",
     "gulp": "~3.9.0",
     "bower": "~1.4.1",
+    //deprecated gulp-rimraf@0.1.1: Use npmjs.org/del instead, see https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md
     "gulp-rimraf": "~0.1.1",
     "gulp-develop-server": "~0.4.3",
     "gulp-watch": "~4.2.4",

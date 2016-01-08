@@ -6,7 +6,7 @@
         server = require('gulp-develop-server'),
         watch = require('gulp-watch'),
         simpleCopyGlobs = {
-            core: ['api-app.js', 'config.js', 'core-server/**/'],
+            core: ['*.js', 'config.js', 'core-server/**/'],
             api: 'api/*.js',
             users: 'users/**'
         },
