@@ -1,7 +1,5 @@
 (function () {
     'use strict';
-
-<<<<<<< HEAD
     var gulp = require('gulp');
     var del = require('del');
     var vinylPaths = require('vinyl-paths');
