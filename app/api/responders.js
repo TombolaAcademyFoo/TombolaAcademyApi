@@ -50,14 +50,8 @@
     };
 
     var getSingleOnConnection = function (res, req, connection) {
-        var criteria = { id: req.params.id};
-        for(var key in req.query){
-            criteria[key] = req.query[key];
-        }
-        var whereClause = buildWhereClause(criteria);
-        var query = 'SELECT * FROM ' + req.params.tablename +  whereClause.clause;
-        console.log(query);
-        console.log(whereClause.values);
+        var whereClause = buildWhereClause({ id: req.params.id});
+        var query = 'SELECT * FROM ' + req.params.tablename + whereClause.clause;
         getResponder(connection, res, query, whereClause.values);
     };
 
@@ -117,8 +111,6 @@
         });
     };
 
-
-    //TODO: check where clauses...
     module.exports.update =  function(req, res) {
         logger.debug({action: 'update', tablename: req.params.tablename, id: req.params.id, body: req.body});
         respond(req,
@@ -137,7 +129,6 @@
         });
     };
 
-    //TODO: check where clauses...
     module.exports.delete = function (req, res){
         logger.debug({action: 'delete', tablename: req.params.tablename, id: req.params.id});
         respond(req,
